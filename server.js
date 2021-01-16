@@ -4,7 +4,7 @@
 const express = require('express');
 const passport = require('passport');
 const helmet = require('helmet');
-// const db = require("./models");
+const db = require("./models");
 
 
 const app = express();
@@ -33,7 +33,8 @@ var PORT = process.env.PORT || 3030;
 // ================
 
 // Just start server for now wait till models are done. 
-
-app.listen(PORT, function() {
-    console.log("Server running on PORT " + PORT);
-})
+db.sequelize.sync({ force: false }).then(function() {
+    app.listen(PORT, function() {
+        console.log("Server running on PORT " + PORT);
+    });
+});
