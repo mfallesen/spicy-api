@@ -12,7 +12,7 @@ module.exports = function (sequelize, type) {
                 allowNull: true,
             }
         });
-        Spice_rack.hasMany(models.spice, {
+        Spice_rack.hasMany(models.Spice, {
             foreignKey: {
                 allowNull: true,
             }

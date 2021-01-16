@@ -27,7 +27,7 @@ module.exports = function (sequelize, type) {
 
     });
     User.associate = function (models) {
-        User.hasOne(models.user_spice_rack)
+        User.hasOne(models.Spice, {through: 'Spice_rack'})
     };
 
     return User;

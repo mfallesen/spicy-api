@@ -10,11 +10,11 @@ module.exports = function (sequelize, type) {
             type: type.DATE,
             allowNull: false,
         },
-        brand: type.String,
+        brand: type.STRING,
     });
 
     Spice.associate = function (models) {
-        Spice.belongsToMany(models.user_spice_rack)
+        Spice.belongsTo(models.User, {through: 'Spice_rack'})
     };
     return Spice;
 };
