@@ -59,5 +59,65 @@ passport.use(
     ),
 );
 
+passport.use(
+    'login',
+    new LocalStrategy(
+        {
+            usernameField: 'username',
+            passwordField: 'password',
+            session: false,
+        },
+        (username, password, done) => {
+            try {
+                db.User.findOne({
+                    where: {
+                        username,
+                    },
+                }).then(user => {
+                    if (user === null) {
+                        return done(null, false, {message: 'bad username'})
+                    }
+                    bcrypt.compare(password, user.password).then(response => {
+                        if (response !== true) {
+                            console.log('Passwords do not match');
+                            return done(null, false, { message: 'passwords do not match' });
+                        }
+                        console.log("User Found and Authenticated");
+                        return done(null, user);
+                    });
+                });
+            } catch (err) {
+                done(err);
+            }
+        },
+    ),
+);
 
-// TODO: JWT AND LOGIN AUTHENTICATION
+const options = {
+    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken();
+    secretOrKey: process.env.JWT_SECRET
+}
+
+passport.use(
+    'jwt',
+    new JWTstrategy(options, (jwt_payload, done) => {
+        console.log("JWT STRAT FIRED");
+        try {
+            db.User.findOne({
+                where: {
+                    id: jwt_payload.id,
+                },
+            }).then( user => {
+                if (user) {
+                    console.log("User in DB");
+                    done(null, user);
+                } else {
+                    console.log("No User in DB");
+                    done(null, false);
+                }
+            });
+        } catch (err) {
+            done(err);
+        }
+    }),
+);
