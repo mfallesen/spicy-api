@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
 })
 
 router.use('/user', require('./registerUser'));
+router.use('/user', require('./loginUser'));
 
 
 
