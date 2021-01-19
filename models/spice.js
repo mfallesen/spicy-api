@@ -1,6 +1,6 @@
 module.exports = function (sequelize, type) {
     const Spice = sequelize.define('Spice', {
-        spice_id: {
+        id: {
             type: type.INTEGER,
             primaryKey: true,
             autoIncrement: true,
@@ -10,7 +10,7 @@ module.exports = function (sequelize, type) {
     });
 
     Spice.associate = function (models) {
-        Spice.belongsTo(models.User, {through: 'Spice_rack'})
+        Spice.belongsToMany(models.User, {through: models.spiceRack, foreignKey: 'spiceId' })
     };
     return Spice;
 };

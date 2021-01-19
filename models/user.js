@@ -27,7 +27,7 @@ module.exports = function (sequelize, type) {
 
     });
     User.associate = function (models) {
-        User.belongsToMany(models.Spice, {through: 'Spice_rack', foreignKey: User.id})
+        User.belongsToMany(models.Spice, { through:models.spiceRack, foreignKey: "userId"})
     };
 
     return User;
