@@ -10,7 +10,7 @@ module.exports = function (sequelize, type) {
     });
 
     Spice.associate = function (models) {
-        Spice.belongsToMany(models.User, {through: models.spiceRack, foreignKey: 'spiceId' })
+        Spice.belongsToMany(models.User, {through: models.spiceRack, foreignKey: 'spiceId'})
     };
     return Spice;
 };
