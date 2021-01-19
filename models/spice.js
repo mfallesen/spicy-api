@@ -5,11 +5,7 @@ module.exports = function (sequelize, type) {
             primaryKey: true,
             autoIncrement: true,
         },
-        purchase_date: type.DATE,
-        expiration_date: {
-            type: type.DATE,
-            allowNull: false,
-        },
+        spice_name: type.STRING,
         brand: type.STRING,
     });
 
