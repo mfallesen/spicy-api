@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 
 router.use('/user', require('./registerUser'));
 router.use('/user', require('./loginUser'));
-
+router.use('/user', require('./addSpice'))
 
 
 module.exports = router
