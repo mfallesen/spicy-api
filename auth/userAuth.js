@@ -19,9 +19,7 @@ passport.use(
             session: false,
         },
         (req, username, password, done) => {
-            // For Testing
-            console.log(username);
-            console.log(req.body.email);
+
             // Check to see if username or email is already registered
             try {
                 db.User.findOne({
