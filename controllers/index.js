@@ -11,6 +11,8 @@ router.use('/user', require('./loginUser'));
 router.use('/user', require('./addSpice'));
 router.use('/user', require('./addSpiceToUserRack'));
 router.use('/user', require('./removeSpiceFromUser'));
-
+router.use('/user', require('./findUserSpices'));
+router.use('/user', require('./populateSpices'));
+router.use('/user', require('./findIndividualSpiceInfo'));
 
 module.exports = router

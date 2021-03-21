@@ -2,9 +2,11 @@
 // Dependencies
 // ================
 const express = require('express');
+const Cors = require('cors')
 const passport = require('passport');
 const helmet = require('helmet');
 const db = require("./models");
+const bodyParser = require('body-parser')
 
 
 const app = express();
@@ -14,7 +16,7 @@ require('dotenv').config();
 // Static Directory
 // ================
 app.use(express.static(--__dirname + '/public'));
-app.use(express.json());
+
 
 // ================
 // Data Parsing
@@ -27,8 +29,13 @@ require("./auth/userAuth.js");
 app.use(helmet());
 app.use(passport.initialize());
 
+// CORS requests
+app.use(Cors({
+    origin:["http://localhost:3000"],
+}))
 
-// Need Cors?
+
+
 const allRoutes = require('./controllers');
 app.use('/', allRoutes);
 

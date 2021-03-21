@@ -7,14 +7,15 @@ const passport = require('passport');
 const db = require('../models');
 
 // Register User
-router.post('/registerUser', (req, res, next ) => {
-    console.log(req.body);
+router.post('/registerUser', (req, res, next ) => { 
+
     passport.authenticate('register', (err, user, info ) => {
+        console.log(info);
         if (err) {
-            console.error(err);
+            console.error('++++++++++++',err);
         }
         if (info !== undefined) {
-            console.error(info.message);
+            console.error("################",info.message);
             res.status(403).send(info.message);
         } else {
             req.logIn(user, error => {
@@ -28,9 +29,6 @@ router.post('/registerUser', (req, res, next ) => {
                         username: data.username,
                     },
                 }).then(user => {
-                    // client.user(data.username).create({
-                    //     name: `${data.name}`
-                    // });
                     user
                         .update({
                             name: data.name,
