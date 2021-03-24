@@ -12,6 +12,7 @@ router.post('/findIndividualSpiceInfo', async (req, res, next) => {
         },
     })
         .then((spice) => {
+            console.log(spice)
             res.status(200).json(spice)
         })
         .catch((err) => {

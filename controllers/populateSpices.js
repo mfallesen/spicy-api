@@ -5,17 +5,17 @@ const db = require("../models");
 router.post('/populateSpices', async (req, res, next) => {
     console.log("============================");
     console.log(req.body)
-    
     await db.spiceRack.findAll({
         where: {
-            id: req.body.id
+            spiceId: req.body.id,
+            userId: req.body.userId
         },
     })
         .then((spiceRack) => {
 
             console.log(spiceRack);
 
-            res.status(200).json(spiceRack)
+            res.status(200).send(spiceRack)
 
         })
         .catch((err) => {
