@@ -17,13 +17,18 @@ router.post('/addSpice', (req, res, next) => {
 
                         brand: req.body.brand
                     });
-                    return message = 'Spice Entered into DB'
+                    return message = db.spice.findOne({
+                        where: {
+                            spice_name: req.body.spice_name,
+                    brand: req.body.brand
+                        }
+                    })
                 } else {
-                    return message = "Spice already exists in DB"
+                    return message = spice.id
                 }
             }).then( () => {
                 console.log("sent!");
-                res.status(200).send(message);
+                res.status(200).json(message);
             })
             .catch((err) => {
                 console.error(err);  /******/
