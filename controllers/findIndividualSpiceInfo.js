@@ -3,8 +3,8 @@ const router = express.Router();
 const db = require("../models");
 
 router.post('/findIndividualSpiceInfo', async (req, res, next) => {
-    console.log('hitting route');
-    console.log(req.body.id)
+    // console.log('hitting route');
+    // console.log(req.body.id)
 
     await db.Spice.findAll({
         where: {
@@ -12,7 +12,7 @@ router.post('/findIndividualSpiceInfo', async (req, res, next) => {
         },
     })
         .then((spice) => {
-            console.log(spice)
+            // console.log(spice)
             res.status(200).json(spice)
         })
         .catch((err) => {

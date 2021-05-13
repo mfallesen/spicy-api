@@ -4,13 +4,14 @@ const db = require("../models");
 
 router.post('/addSpiceToUserRack', (req, res, next) => {
 
+
     db.spiceRack.create({
         purchase_date: req.body.purchase_date,
         expiration_date: req.body.expiration_date,
         spiceId: req.body.spiceId,
         userId: req.body.userId
     }).then(() => {
-        console.log("sent!");
+        console.log("sent to user SPice Rack!");
         let message = `'Spice Entered into User ${req.body.userId}'s spice rack'`
         res.status(200).send(message);
     })
