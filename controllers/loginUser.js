@@ -27,14 +27,16 @@ router.post('/loginUser', (req, res, next) => {
                         expiresIn: 60 * 60,
                     });
 
-                    // Might only be for getstream. 
-                    // const appToken = createUserToken(`${user.username}`);
                     
                     const id = user.id;
+                    const name = user.name;
+                    const userName = user.username;
                     res.status(200).send({
                         auth: true,
                         id,
                         token,
+                        user,
+                        userName,
                         message: 'User Found and Logged In'
                     });
                 });

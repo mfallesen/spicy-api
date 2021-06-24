@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 
+
 router.post('/populateSpices', async (req, res, next) => {
     // console.log("============================");
     // console.log(req.body)
@@ -13,7 +14,7 @@ router.post('/populateSpices', async (req, res, next) => {
     })
         .then((spiceRack) => {
 
-            // console.log(spiceRack);
+            console.log(spiceRack);
 
             res.status(200).send(spiceRack)
 
