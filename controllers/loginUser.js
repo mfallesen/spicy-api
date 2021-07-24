@@ -29,14 +29,12 @@ router.post('/loginUser', (req, res, next) => {
 
                     
                     const id = user.id;
-                    const name = user.name;
-                    const userName = user.username;
+                    const userRealName = user.name;
                     res.status(200).send({
                         auth: true,
                         id,
                         token,
-                        user,
-                        userName,
+                        userRealName,
                         message: 'User Found and Logged In'
                     });
                 });

@@ -5,11 +5,12 @@ const db = require("../models");
 router.post('/removeSpiceFromUser', (req, res) => {
     db.spiceRack.destroy({
         where: {
-            spiceId: req.body.spiceId,
+            id: req.body.spiceId,
             userId: req.body.userId
         },
     }).then(() => {
         let message = "Entry deleted from User Rack"
+        console.log(message);
         res.status(200).send(message);
     }).catch((err) => {
         console.error(err);  /******/
